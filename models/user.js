@@ -6,13 +6,13 @@ export const User = model(
   Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    image: { type: String },
+    imageUrl: { type: String },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    posts: [
+    articles: [
       {
         type: Types.ObjectId,
-        ref: "Post",
+        ref: "Article",
       },
     ],
     likes: [

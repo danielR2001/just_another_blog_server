@@ -7,7 +7,7 @@ export const getUser = async (req, res, next) => {
   const { id } = req.body;
   try {
     const user = await User.findById({ id });
-    res.status(200).json(posts);
+    res.status(200).json(articles);
   } catch (error) {
     next({
       code: 400,

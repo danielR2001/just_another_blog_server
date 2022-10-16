@@ -8,9 +8,9 @@ const Comment = model(
       type: Types.ObjectId,
       ref: "User",
     },
-    post: {
+    article: {
       type: Types.ObjectId,
-      ref: "Post",
+      ref: "Article",
     },
     text: { type: String, required: true },
   })

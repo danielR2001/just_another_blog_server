@@ -1,6 +1,6 @@
 export { commentValidationRules } from "./comments.validators.js";
-export { postSectionValidationRules } from "./postSections.validators.js";
-export { postValidationRules } from "./posts.validators.js";
+export { articleSectionValidationRules } from "./articleSections.validators.js";
+export { articleValidationRules } from "./articles.validators.js";
 export { userValidationRules } from "./users.validators.js";
 
 import { validationResult } from "express-validator";

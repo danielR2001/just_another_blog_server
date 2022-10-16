@@ -6,7 +6,7 @@ import { commentValidationRules, validator } from "../validators/index.js";
 const router = express.Router();
 
 router.post(
-  "/:postId",
+  "/:articleId",
   auth,
   commentValidationRules("createComment"),
   validator,

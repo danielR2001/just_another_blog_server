@@ -8,9 +8,9 @@ export const Like = model(
       type: Types.ObjectId,
       ref: "User",
     },
-    post: {
+    article: {
       type: Types.ObjectId,
-      ref: "Post",
+      ref: "Article",
     },
   })
 );

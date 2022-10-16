@@ -1,20 +1,23 @@
-import { Like, Post, User } from "../models/index.js";
+import { Like, Article, User } from "../models/index.js";
 
 export const likeUnlike = async (req, res, next) => {
-  const { postId } = req.params;
+  const { articleId } = req.params;
   const userId = res.locals.user._id;
   const newLike = new Like({
     user: userId,
-    post: postId,
+    article: articleId,
   });
 
   try {
-    const existingLike = await Like.findOne({ user: userId, post: postId });
+    const existingLike = await Like.findOne({
+      user: userId,
+      article: articleId,
+    });
 
     if (existingLike) {
       const deletedLike = await Like.findByIdAndDelete(existingLike._id);
-      await Post.findByIdAndUpdate(
-        postId,
+      await Article.findByIdAndUpdate(
+        articleId,
         { $pull: { likes: deletedLike._id } },
         { new: true }
       );
@@ -23,12 +26,12 @@ export const likeUnlike = async (req, res, next) => {
         { $pull: { likes: deletedLike._id } },
         { new: true }
       );
-      return res.status(200).json(`Unliked post ${postId}`);
+      return res.status(200).json(`Unliked article ${articleId}`);
     }
 
     const createdLike = await Like.create(newLike);
-    await Post.findByIdAndUpdate(
-      postId,
+    await Article.findByIdAndUpdate(
+      articleId,
       { $push: { likes: createdLike._id } },
       { new: true, useFindAndModify: false }
     );
@@ -37,11 +40,11 @@ export const likeUnlike = async (req, res, next) => {
       { $push: { likes: createdLike._id } },
       { new: true }
     );
-    return res.status(200).json(`Liked post ${postId}`);
+    return res.status(200).json(`Liked article ${articleId}`);
   } catch (err) {
     next({
       code: 400,
-      message: `Something went wrong while liking post ${postId}`,
+      message: `Something went wrong while liking article ${articleId}`,
       error: err.message,
     });
   }

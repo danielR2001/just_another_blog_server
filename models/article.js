@@ -1,10 +1,16 @@
 import mongoose from "mongoose";
 const { Schema, model, Types } = mongoose;
 
-export const Post = model(
-  "Post",
+export const Article = model(
+  "Article",
   Schema({
     title: { type: String, required: true },
+    imageUrl: { type: String },
+    url: { type: String },
+    tag: { type: String },
+    summary: { type: String },
+    date: { type: String },
+    minToRead: { type: Number },
     author: {
       type: Types.ObjectId,
       ref: "User",
@@ -12,7 +18,7 @@ export const Post = model(
     sections: [
       {
         type: Types.ObjectId,
-        ref: "PostSection",
+        ref: "ArticleSection",
       },
     ],
     tags: { type: [String], required: true },

@@ -1,14 +1,14 @@
 import { check } from "express-validator";
 
-export const postValidationRules = (method) => {
+export const articleValidationRules = (method) => {
   switch (method) {
-    case "createPost": {
+    case "createArticle": {
       return [
         check("title", "Title cant be empty.").notEmpty(),
         check("tags", "Tags cant be empty.").notEmpty(),
       ];
     }
-    case "updatePost": {
+    case "updateArticle": {
       return [
         check("title").optional().notEmpty(),
         check("tags").optional().notEmpty(),

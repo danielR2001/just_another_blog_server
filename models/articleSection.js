@@ -1,27 +1,27 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
-export const PostSectionType = {
+export const ArticleSectionType = {
   paragraph: "P",
   image: "IMG",
   link: "A",
 };
 
-export const PostSection = model(
-  "PostSection",
+export const ArticleSection = model(
+  "ArticleSection",
   Schema({
     order: { type: Number, required: true },
     name: { type: String, required: true },
     type: {
       type: String,
-      enum: Object.values(PostSectionType),
+      enum: Object.values(ArticleSectionType),
       required: true,
     },
     data: { type: String, required: true },
   })
 );
 
-export const postSectionValidation = {
+export const articleSectionValidation = {
   order: {
     notEmpty: true,
     isNumeric: true,
@@ -33,8 +33,8 @@ export const postSectionValidation = {
   },
   type: {
     isIn: {
-      options: [Object.values(PostSectionType)],
-      errorMessage: "type is an PostSectionType enum",
+      options: [Object.values(ArticleSectionType)],
+      errorMessage: "type is an article section type enum",
     },
     errorMessage: "type field cannot be empty",
   },

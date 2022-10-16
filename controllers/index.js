@@ -4,12 +4,12 @@ export {
   createSection,
   updateSection,
   deleteSection,
-} from "./postSections.controllers.js";
+} from "./articleSections.controllers.js";
 export {
-  getPosts,
-  getPost,
-  createPost,
-  updatePost,
-  deletePost,
-} from "./posts.controllers.js";
+  getArticles,
+  getArticle,
+  createArticle,
+  updateArticle,
+  deleteArticle,
+} from "./articles.controllers.js";
 export { getUser, signIn, signUp } from "./users.controllers.js";

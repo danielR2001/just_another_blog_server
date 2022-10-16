@@ -1,27 +1,27 @@
-import { Post } from "../models/index.js";
+import { Article } from "../models/index.js";
 import mongoose from "mongoose";
 const { Types } = mongoose;
 
-const postAuth = async (req, res, next) => {
+const articleAuth = async (req, res, next) => {
   const user = res.locals.user;
-  const postId = req.params["postId"];
+  const articleId = req.params["articleId"];
   try {
-    if (!Types.ObjectId.isValid(postId)) {
+    if (!Types.ObjectId.isValid(articleId)) {
       return next({
         code: 404,
         message: "Invalid parameter id",
       });
     }
 
-    const post = Post.find({ author: user._id, _id: postId });
-    if (!post) {
+    const article = Article.find({ author: user._id, _id: articleId });
+    if (!article) {
       return next({
         code: 401,
         message: "Not authorized",
         error: err,
       });
     }
-    res.locals.post = post;
+    res.locals.article = article;
     next();
   } catch (error) {
     err.code = 400;
@@ -30,4 +30,4 @@ const postAuth = async (req, res, next) => {
   }
 };
 
-export default postAuth;
+export default articleAuth;

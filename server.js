@@ -2,9 +2,9 @@ import express from "express";
 import {
   commentRoutes,
   userRoutes,
-  postRoutes,
+  articleRoutes,
   likeRoutes,
-  postSectionsRoutes,
+  articleSectionsRoutes,
 } from "./routes/index.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -33,10 +33,10 @@ app.use((req, _, next) => {
 
 //  routes
 app.use("/users", userRoutes);
-app.use("/posts", postRoutes);
+app.use("/articles", articleRoutes);
 app.use("/likes", likeRoutes);
 app.use("/comments", commentRoutes);
-app.use("/postSections", postSectionsRoutes);
+app.use("/articleSections", articleSectionsRoutes);
 
 //  error handler
 app.use(errorhandler);
